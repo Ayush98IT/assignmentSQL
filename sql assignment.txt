@@ -1,0 +1,34 @@
+ MySQL  localhost:33060+ ssl  seriesdb  SQL > show tables;
++--------------------+
+| Tables_in_seriesdb |
++--------------------+
+| country            |
+| director           |
+| genre              |
+| name               |
+| status             |
+| yoe                |
+| yor                |
++--------------------+
+7 rows in set (0.0136 sec)
+ MySQL  localhost:33060+ ssl  seriesdb  SQL > select*from name;
++----+-------------+-------+---------+----------+------+------+----------+
+| id | name        | genre | country | status   | yor  | yoe  | director |
++----+-------------+-------+---------+----------+------+------+----------+
+|  1 | money heist |     3 |       2 | active   | 2015 | 2021 |        1 |
+|  2 | pilot       |     3 |       3 | active   | 2010 | 2013 |        2 |
+|  3 | ray         |     4 |       2 | active   | 2012 | 2019 |        3 |
+|  4 | the 100     |     2 |       3 | unactive | 2010 | 2014 |        4 |
+|  5 | ozark       |     1 |       4 | unactive | 2011 | 2017 |        2 |
++----+-------------+-------+---------+----------+------+------+----------+
+5 rows in set (0.0005 sec)
+ MySQL  localhost:33060+ ssl  seriesdb  SQL > select name.id as id,genre.name as genre,country.name as country,director.name as director from name inner join genre on name.genre=genre.id join country on name.country=country.id join director on name.director=director.id;
++----+----------+---------+------------------+
+| id | genre    | country | director         |
++----+----------+---------+------------------+
+|  1 | action   | us      | jesus colemnar   |
+|  5 | suspense | aus     | sam seder        |
+|  2 | action   | us      | sam seder        |
+|  3 | action   | us      | srijit mukherji  |
+|  4 | thriller | us      | jason rothenberg |
++----+----------+---------+------------------+
